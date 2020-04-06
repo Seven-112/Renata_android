@@ -51,7 +51,6 @@ public class FavouriteUserListAdapter extends ArrayAdapter<ReadItem> {
         final ImageView copyToClipboard = rowView.findViewById(R.id.copied);
 
         final ReadItem Item = readitems.get(position);
-
         extratxt.setText(Item.getreaditem_detail());
 
         auth = FirebaseAuth.getInstance();
