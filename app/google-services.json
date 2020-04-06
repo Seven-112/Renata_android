@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "471993971750",
+    "firebase_url": "https://renata-11686.firebaseio.com",
+    "project_id": "renata-11686",
+    "storage_bucket": "renata-11686.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471993971750:android:96d95a80d427e610f462e7",
+        "android_client_info": {
+          "package_name": "com.renata.mentesaudvel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471993971750-hv20fq0ljt3gvnk26n5u8nmdr4gsscub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoKuSAA2e7nhI2TfMPm7q_16uRyXuZ0xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471993971750-hv20fq0ljt3gvnk26n5u8nmdr4gsscub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

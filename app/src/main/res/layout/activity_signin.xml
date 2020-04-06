@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SigninActivity"
+    android:background="@drawable/signup_bg">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/signup_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Bem-vindo(a)!"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="#0B5E3A"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signup_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp">
+
+
+            <EditText
+                android:id="@+id/emailAddress"
+                android:hint="Digite seu e-mail"
+                android:layout_below="@+id/ownerName"
+                android:layout_marginTop="20dp"
+                android:inputType="textEmailAddress"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:alpha="1"
+                android:background="@drawable/roundborder"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:hint="Coloque sua senha"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/emailAddress"
+                android:layout_marginTop="20dp"
+                android:inputType="textPassword"
+                android:layout_centerHorizontal="true"
+                android:alpha="1"
+                android:background="@drawable/roundborder"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                />
+
+
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:text="Entrar"
+                android:textSize="20dp"
+                android:background="@drawable/big_btn"
+                android:textAllCaps="false" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Você não tem uma conta? Vá para criar uma conta!"
+                android:id="@+id/toSignupBtn"
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/login"
+                android:layout_marginTop="30dp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

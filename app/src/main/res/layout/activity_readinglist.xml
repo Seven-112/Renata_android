@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_title"
+    tools:context=".ReadingListAdminActivity">
+    <FrameLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/sectionImage"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:background="#B5B5B5"></ImageView>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="6dp"
+            android:layout_marginBottom="6dp"
+            >
+        <EditText
+            android:id="@+id/sectiontitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/textcornerradius"
+            android:text="Alimentação consciente"
+            android:textColor="#fff"
+            android:textSize="25dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/editTxtBtn"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/textcornerradius"
+                android:text="Edit Title"
+                />
+        </LinearLayout>
+    </FrameLayout>
+    <ListView
+        android:id="@+id/listChild"
+        android:layout_below="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/buttonAddChild"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>

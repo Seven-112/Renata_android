@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/design_default_color_secondary_variant">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/moodstate_btn"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/profileimg"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/profileimg"
+            android:text="Nome   :"
+            android:textColor="#ffffff"
+            android:id="@+id/nametitle"
+            />
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@id/nametitle"
+            android:text="aaa" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/profileimg"
+            android:text="Sexo     :"
+            android:layout_below="@+id/nametitle"
+            android:id="@+id/gendertitle"
+            />
+        <TextView
+            android:id="@+id/genderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/nametitle"
+            android:layout_toRightOf="@id/gendertitle"
+            android:text="aaa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:text="Idade    :"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/genderTV"
+            android:layout_toRightOf="@id/profileimg"
+            android:id="@+id/agetitle"
+            />
+        <TextView
+            android:id="@+id/ageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/genderTV"
+            android:layout_toRightOf="@id/agetitle"
+            android:text="aaa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:text="Email    :"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/ageTV"
+            android:layout_toRightOf="@id/profileimg"
+            android:id="@+id/emailtitle"
+            />
+        <TextView
+            android:id="@+id/emailTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/ageTV"
+            android:layout_toRightOf="@id/agetitle"
+            android:text="aaa" />
+
+    </RelativeLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="125dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+</FrameLayout>

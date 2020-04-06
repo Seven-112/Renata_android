@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_mood"
+        android:title="Humor"
+        android:icon="@drawable/nav_mood"
+        />
+
+    <item
+        android:id="@+id/navigation_reading"
+        android:title="Leitura"
+        android:icon="@drawable/nav_reading"/>
+
+    <item
+        android:id="@+id/navigation_message"
+        android:title="Bate-papo"
+        android:icon="@drawable/nav_message"/>
+    <item
+        android:id="@+id/navigation_favourite"
+        android:title="Favorita"
+        android:icon="@drawable/nav_favourite"/>
+    <item
+        android:id="@+id/navigation_history"
+        android:title="Histórico"
+        android:icon="@drawable/nav_history"/>
+</menu>

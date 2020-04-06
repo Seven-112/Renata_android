@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.renata.mentesaudvel">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="fullSensor"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.renata.mentesaudvel.AlarmReceiver" />
+        <activity android:name=".SignUpActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".SigninActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".MoodActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".MainListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.OneListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.TwoListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.ThreeListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.FourListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.FiveListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.SixListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.SevenListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.EightListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.FavourListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".AdminActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".List.SecondFeelListActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.OneDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.TwoDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.ThreeDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.FourDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.FiveDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.SixDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".DetailList.SevenDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".SubmitActivity"></activity>
+        <activity android:name=".DetailList.EightDetailList" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".FragmentActivity" android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".FragmentAdminActivity"></activity>
+        <activity android:name=".List.NineListActivity"></activity>
+        <activity android:name=".TermsActivity"></activity>
+
+        <activity android:name=".ReadingListAdminActivity"/>
+        <activity android:name=".ReadingListUserActivity"/>
+
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+    </application>
+
+</manifest>

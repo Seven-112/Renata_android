@@ -1,0 +1,46 @@
+<resources>
+
+    <string name="app_name">Mente Saudável</string>
+<!--    <string name="empty_name">Please enter your name!</string>-->
+    <string name="empty_name">Por favor, insira seu nome!</string>
+<!--    <string name="empty_email">Please enter your email address!</string>-->
+    <string name="empty_email">Por favor, indique o seu endereço de e-mail!</string>
+<!--    <string name="incorrect_email">Please enter correct email address!</string>-->
+    <string name="incorrect_email">Digite o endereço de e-mail correto!</string>
+
+<!--    <string name="empty_password">Please enter your password!</string>-->
+    <string name="empty_password">Por favor, insira sua senha!</string>
+
+<!--    <string name="shorter_password">Please enter your password at least 6 characters!</string>-->
+    <string name="shorter_password">Por favor, digite sua senha com pelo menos 6 caracteres!</string>
+
+<!--    <string name="diff_password">Please enter same password!</string>-->
+    <string name="diff_password">Por favor, digite a mesma senha!</string>
+
+<!--    <string name="empty_age">Please enter your age</string>-->
+    <string name="empty_age">Por favor, indique a sua idade!</string>
+
+<!--    <string name="empty_gender">Please select your gender</string>-->
+    <string name="empty_gender">Por favor, escolha o seu sexo</string>
+
+<!--    <string name="description_first">Antes de começarmos preciso saber algumas coisas sobre você, e o mais importante, preciso que você saiba sobre você.</string>-->
+<!--    <string name="description_second">Pare e observe seus pensamentos e sentimentos \n Por exemplo: \n - Estou ansioso \n - Estou em alerta \n - Minha mente está me enganando, me fazendo acreditar que estou em perigo \n - Estou me sentindo tenso</string>-->
+<!--    <string name="description_third">Isso é realmente verdade?\nIsso é um fato ou uma opinião?\nO que um amigo diria sobre isso?\nQue conselho eu daria a outra pessoa?\n* Mesmo sentindo muito mal, essas sensações físicas são respostas do corpo... E vai passar</string>-->
+
+    <!--    <string name="press_back_again_to_exit">Press Back again to Exit.</string>-->
+    <string name="press_back_again_to_exit">Pressione Voltar novamente para sair.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message">Message...</string>
+    <string name="display_name">Display User Name</string>
+    <string name="display_name1">Title</string>
+    <string name="today_mood">Today Mood</string>
+    <string name="agitado">agitado</string>
+    <string name="no_selected">No selected</string>
+    <string name="todo">TODO</string>
+    <string name="feliz">feliz</string>
+    <string name="detail">detail</string>
+
+    <string name="set_profile_image">Set profile image</string>
+
+</resources>
