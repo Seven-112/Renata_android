@@ -34,13 +34,14 @@ public class FavouriteUserListAdapter extends ArrayAdapter<ReadItem> {
     private FirebaseAuth auth;//TODO; firebase
     private DatabaseReference mDatabase; //TODO; database reference
     public FavouriteUserListAdapter(Activity context, List<ReadItem> readItems) {
-        super(context, R.layout.favour_list2);
+        super(context, R.layout.favour_list2, readItems);
         // TODO Auto-generated constructor stub
         this.context=context;
         this.readitems=readItems;
     }
 
     public View getView(final int position, View view, ViewGroup parent) {
+
         final LayoutInflater inflater=context.getLayoutInflater();
         final View rowView = inflater.inflate(R.layout.favour_list2, null,true);
         final TextView extratxt = (TextView) rowView.findViewById(R.id.detailText);
@@ -48,11 +49,6 @@ public class FavouriteUserListAdapter extends ArrayAdapter<ReadItem> {
         final ImageView readStatus = (ImageView) rowView.findViewById(R.id.readyStatus);
         final ImageView bookmark = (ImageView) rowView.findViewById(R.id.bookmark);
         final ImageView copyToClipboard = rowView.findViewById(R.id.copied);
-//        readStatus.setVisibility(View.GONE);
-//        bookmark.setVisibility(View.GONE);
-//        copyToClipboard.setVisibility(View.GONE);
-//        extratxt.setText(itemname[position]);
-//        titletxt.setText(titlename[position]);
 
         final ReadItem Item = readitems.get(position);
 

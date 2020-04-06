@@ -30,39 +30,20 @@ import com.renata.mentesaudvel.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavouriteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FavouriteFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     ListView list;
     private FirebaseAuth auth;//TODO; firebase
     private DatabaseReference mDatabase; //TODO; database reference
-    List<String> itemname = new ArrayList<String>();
-    List<String> titlename = new ArrayList<String>();
     List<ReadItem> readItems = new ArrayList<ReadItem>();
     
     public FavouriteFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavouriteFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static FavouriteFragment newInstance(String param1, String param2) {
         FavouriteFragment fragment = new FavouriteFragment();
@@ -85,12 +66,8 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_favourite, container, false);
         list=(ListView) root.findViewById(R.id.list);
-
-        final FavouriteUserListAdapter favouriteUserListAdapter=new FavouriteUserListAdapter(getActivity(), readItems);
-
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser user = auth.getCurrentUser();
@@ -108,6 +85,7 @@ public class FavouriteFragment extends Fragment {
                         readItems.add(readItem);
                     }
                     Log.v(":", String.valueOf(readItems));
+                    final FavouriteUserListAdapter favouriteUserListAdapter=new FavouriteUserListAdapter(getActivity(), readItems);
                     list.setAdapter(favouriteUserListAdapter);
                 }else {
                     Toast.makeText(getActivity(), " There aren't any favourite", Toast.LENGTH_LONG).show();
