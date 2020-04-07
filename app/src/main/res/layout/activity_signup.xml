@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Me fale um pouco sobre você"
+            android:text="Me fale um pouco sobre você?"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textColor="#0E4D31"/>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -143,20 +143,29 @@
                     android:textSize="20dp"/>
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioSex"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="terms of service"
+                android:textColor="#fff" />
+
             <Button
                 android:id="@+id/register"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/radioSex"
+                android:layout_below="@+id/terms"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/big_btn"
                 android:text="Inscrever-se"
                 android:textAllCaps="false"
                 android:textSize="20dp" />
 
             <TextView
-
                 android:id="@+id/toSignipBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
