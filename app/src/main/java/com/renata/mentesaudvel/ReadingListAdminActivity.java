@@ -176,16 +176,11 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String id = databaseReference.child("items").push().getKey();
-                ReadItem Item = new ReadItem(id, "default","default");
+                ReadItem Item = new ReadItem(id, "default","Clique aqui para editar novos conteúdos.");
                 //Saving the Item
                 databaseReference.child("items").child(id).setValue(Item);
-<<<<<<< HEAD
-=======
-//                listChild.scrollTo(0, listChild.getBottom());
-//                listChild.smoothScrollToPosition(3);
                 scrollkey = false;
 
->>>>>>> bf2fa3c3a8876e8677166747680ee5f949c92b8b
                 Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
             }
         });

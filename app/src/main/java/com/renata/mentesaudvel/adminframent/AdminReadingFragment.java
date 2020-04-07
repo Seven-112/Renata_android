@@ -137,7 +137,7 @@ public class AdminReadingFragment extends Fragment {
 
                 String id = databaseReference.push().getKey();
 
-                Reading Item = new Reading(id, "default","default","default","default","default");
+                Reading Item = new Reading(id, "default","default","default","default"," / / / / / / / ");
                 //Saving the Item
                 databaseReference.child(id).setValue(Item);
                 scrollKeyParent = false;
