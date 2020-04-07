@@ -29,9 +29,10 @@
             >
         <EditText
             android:id="@+id/sectiontitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:hint=" Enter Title "
+            android:textColorHint="#000"
 
             android:background="@drawable/textcornerradius"
             android:text="Alimentação consciente"
