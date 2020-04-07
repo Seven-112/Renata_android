@@ -66,6 +66,15 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+        TextView terms = findViewById(R.id.terms);
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, TermsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         radioSexGroup = (RadioGroup) findViewById(R.id.radioSex);
         register = findViewById(R.id.register);
         auth = FirebaseAuth.getInstance();
