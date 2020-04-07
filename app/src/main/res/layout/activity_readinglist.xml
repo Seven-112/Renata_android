@@ -32,46 +32,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint=" Enter Title "
-            android:textColorHint="#000"
-
             android:background="@drawable/textcornerradius"
             android:text="Alimentação consciente"
             android:textColor="#fff"
             android:textSize="25dp" />
-
-        </LinearLayout>
-    </FrameLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/first"
-        android:id="@+id/mediaGroup"
-        android:orientation="horizontal"
-        android:gravity="center">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/editTxtBtn"
             android:layout_gravity="bottom"
             android:layout_marginLeft="6dp"
-            android:text="Title"
+            android:text="Edit Title"
+            android:background="@drawable/small_btn"
             />
+
+        </LinearLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@+id/first"
+        android:id="@+id/mediaGroup"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/firstAudio"
-            android:text="Audio1"/>
+            android:text="Audio1"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/small_btn"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/secondAudio"
-            android:text="Audio2"/>
+            android:text="Audio2"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/small_btn"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/video"
-            android:text="Video"/>
+            android:text="Video"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/small_btn"/>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/delete"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/delete"/>
 
     </LinearLayout>
     <ListView

@@ -136,7 +136,7 @@ public class AdminReadingFragment extends Fragment {
                 databaseReference.child(id).setValue(Item);
                 scrollKeyParent = false;
 
-                Toast.makeText(getActivity(),"An Item Added.",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),"An Item Added.",Toast.LENGTH_SHORT).show();
             }
         });
         ReadingAdapter = new SectionListAdapter(getActivity(), readings );
@@ -178,7 +178,7 @@ public class AdminReadingFragment extends Fragment {
                         });
 
                 AlertDialog alert11 = builder1.create();
-                alert11.setIcon(android.R.drawable.ic_dialog_alert);
+                alert11.setIcon(R.drawable.warning);
                 alert11.show();
 
                 return true;
@@ -211,7 +211,7 @@ public class AdminReadingFragment extends Fragment {
 
                 readings.add( Item );
             }
-            if(scrollKeyParent.equals(false)){
+            if(!scrollKeyParent){
 
                 list.post(new Runnable(){
                     public void run() {
