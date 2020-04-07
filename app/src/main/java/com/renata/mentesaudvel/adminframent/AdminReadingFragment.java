@@ -58,6 +58,7 @@ public class AdminReadingFragment extends Fragment {
     DatabaseReference databaseReference;
     List<Reading> readings = new ArrayList<>();
     private SectionListAdapter ReadingAdapter;
+    Boolean scrollKeyParent = true;
 
     Parcelable state;
 
@@ -139,6 +140,7 @@ public class AdminReadingFragment extends Fragment {
                 Reading Item = new Reading(id, "default","default","default","default","default");
                 //Saving the Item
                 databaseReference.child(id).setValue(Item);
+                scrollKeyParent = false;
 
                 Toast.makeText(getActivity(),"An Item Added.",Toast.LENGTH_SHORT).show();
             }
@@ -214,6 +216,13 @@ public class AdminReadingFragment extends Fragment {
                 Reading Item = postSnapshot.getValue( Reading.class);
 
                 readings.add( Item );
+            }
+            if(scrollKeyParent.equals(false)){
+
+                list.post(new Runnable(){
+                    public void run() {
+                        list.setSelection(list.getCount() - 1);
+                    }});
             }
 
             list.setAdapter(ReadingAdapter);

@@ -65,6 +65,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
     private final int PICK_VIDEO_REQUEST = 12;
     private StorageReference userProfileImageRef,storageReference;
     private Uri filePath, filePathdoc,filePathdoc2,videoPathdoc;
+    Boolean scrollkey = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,9 +179,17 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 ReadItem Item = new ReadItem(id, "default","default");
                 //Saving the Item
                 databaseReference.child("items").child(id).setValue(Item);
+<<<<<<< HEAD
+=======
+//                listChild.scrollTo(0, listChild.getBottom());
+//                listChild.smoothScrollToPosition(3);
+                scrollkey = false;
+
+>>>>>>> bf2fa3c3a8876e8677166747680ee5f949c92b8b
                 Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
             }
         });
+
         sectionImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,8 +292,16 @@ public class ReadingListAdminActivity extends AppCompatActivity {
 
                 readitems.add( Item );
             }
+            if(scrollkey.equals(false)){
 
+                listChild.post(new Runnable(){
+                    public void run() {
+                        listChild.setSelection(listChild.getCount() - 1);
+                    }});
+            }
             listChild.setAdapter(readDetailAdapter);
+
+//            listChild.scrollTo(0, listChild.getBottom());
 //            pd.dismiss();
 
         }
@@ -293,6 +310,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         public void onCancelled(DatabaseError databaseError) {
 
         }
+
 
     };
 
