@@ -178,7 +178,6 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 ReadItem Item = new ReadItem(id, "default","default");
                 //Saving the Item
                 databaseReference.child("items").child(id).setValue(Item);
-
                 Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
             }
         });

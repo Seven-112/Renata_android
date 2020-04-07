@@ -3,10 +3,13 @@ package com.renata.mentesaudvel.adminframent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -55,6 +58,8 @@ public class AdminReadingFragment extends Fragment {
     DatabaseReference databaseReference;
     List<Reading> readings = new ArrayList<>();
     private SectionListAdapter ReadingAdapter;
+
+    Parcelable state;
 
     String[] itemname ={
             "Alimentação consciente",
@@ -112,6 +117,7 @@ public class AdminReadingFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fregment_admin_reading, container, false);
         list=(ListView) root.findViewById(R.id.list);
+        state = list.onSaveInstanceState();
         addBtn=(Button) root.findViewById(R.id.buttonAdd) ;
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Readings");
@@ -211,6 +217,7 @@ public class AdminReadingFragment extends Fragment {
             }
 
             list.setAdapter(ReadingAdapter);
+            list.onRestoreInstanceState(state);
 //            pd.dismiss();
 
         }
