@@ -23,12 +23,20 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:paddingTop="5dp"
+<<<<<<< HEAD
             android:textSize="16sp"
             android:breakStrategy="simple"
             android:scrollHorizontally="false"
 
 
             />
+=======
+            android:layout_weight="1"
+            style="@style/SimpleBreakStrategy"
+            android:layout_centerInParent="true"
+            android:hyphenationFrequency="none"
+            android:textSize="18sp" />
+>>>>>>> f820e86312a5ddddafdabc320768e8deaadc2b39
 <!--        <LinearLayout-->
 <!--            android:layout_below="@+id/detailText"-->
 <!--            android:layout_width="match_parent"-->

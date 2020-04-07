@@ -39,27 +39,35 @@
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_below="@+id/first"
         android:id="@+id/second"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="8dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/firstAudioFile"
-            android:text="Audio1"/>
+            android:text="Audio1"
+            android:background="@drawable/uploaded_btn"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/secondAudioFile"
-            android:text="Audio2"/>
+            android:text="Audio2"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/uploaded_btn"/>
+        />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/videoFile"
-            android:text="Video"/>
+            android:text="Video"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/uploaded_btn"/>
+        />
 
     </LinearLayout>
     <ListView
