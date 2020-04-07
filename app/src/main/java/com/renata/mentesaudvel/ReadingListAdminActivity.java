@@ -154,7 +154,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                         });
 
                 AlertDialog alert11 = builder1.create();
-                alert11.setIcon(android.R.drawable.ic_dialog_alert);
+                alert11.setIcon(R.drawable.warning);
                 alert11.show();
             }
         });
@@ -162,7 +162,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
         nameTV.setEnabled(false);
 //        Toast.makeText(ReadingListAdminActivity.this,""+readingID,Toast.LENGTH_SHORT).show();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String imgID = dataSnapshot.child("reading_image").getValue(String.class);
@@ -220,10 +220,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 //Saving the Item
                 databaseReference.child("items").child(id).setValue(Item);
                 scrollkey = false;
-
-                Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
-//                listChild.scrollTo(0, listChild.getBottom());
-//                listChild.smoothScrollToPosition(3);
+//                Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
                 scrollkey = false;
             }
         });
