@@ -117,40 +117,23 @@ public class HistoryFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            final String key = (String) dataSnapshot1.getKey();
-                            Log.v("key", key);
-                            DatabaseReference keyRef = dateHistory.child(key);
-                            keyRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String keyvalue = (String) dataSnapshot.getValue();
-                                    Log.v("value", keyvalue);
-                                    date.add(key);
-                                    int i = date.size();
-                                    Log.v("size", String.valueOf(i));
-                                    if (i > 30) {
-                                        date.subList(0,i-30).clear();
-
-                                    }
-                                    status.add(keyvalue);
-                                    int j = status.size();
-                                    if (j > 30) {
-                                        status.subList(0, j-30).clear();
-                                    }
-                                    Log.v("date", String.valueOf(date));
-                                    Collections.reverse(date);
-                                    Collections.reverse(status);
-                                    SecondFeelListAdapter adapter=new SecondFeelListAdapter(HistoryFragment.newInstance("",""), date, status, imgid);
-                                    recyclerView.setAdapter(adapter);
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+                            String key = (String) dataSnapshot1.getKey();
+                            String value = (String) dataSnapshot1.getValue();
+                            date.add(key);
+                            status.add(value);
                         }
+                        int i = date.size();
+                        int j = status.size();
+                        if (i > 30) {
+                            date.subList(0,i-30).clear();
+                        }
+                        if (j > 30) {
+                            status.subList(0, j-30).clear();
+                        }
+                        Collections.reverse(date);
+                        Collections.reverse(status);
+                        SecondFeelListAdapter adapter=new SecondFeelListAdapter(HistoryFragment.newInstance("",""), date, status, imgid);
+                        recyclerView.setAdapter(adapter);
                     }
                 }
 
