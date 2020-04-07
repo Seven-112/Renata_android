@@ -7,13 +7,16 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.MultiSelectListPreference;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.renata.mentesaudvel.Adapter.ReadDetailAdapter;
 import com.renata.mentesaudvel.Model.ReadItem;
+import com.renata.mentesaudvel.Model.Reading;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -48,11 +52,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static android.graphics.text.LineBreaker.HYPHENATION_FREQUENCY_NONE;
+
 public class ReadingListAdminActivity extends AppCompatActivity {
 
     String[] itemname = {};
     DatabaseReference databaseReference;
-    Button addChildBtn,editTxtBtn, audio1Btn,audio2Btn,videoBtn;
+    Button addChildBtn,editTxtBtn, audio1Btn,audio2Btn,videoBtn,deleteBtn;
     ImageView sectionImage;
     ListView listChild;
     EditText nameTV;
@@ -73,8 +79,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_readinglist);
 
         Bundle extra = getIntent().getExtras();
-        String readingID = extra.getString("readingid");
-
+        final String readingID = extra.getString("readingid");
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Readings").child(readingID);
         userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
@@ -89,6 +94,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         audio1Btn = (Button) findViewById(R.id.firstAudio) ;
         audio2Btn = (Button) findViewById(R.id.secondAudio) ;
         videoBtn = (Button) findViewById(R.id.video) ;
+        deleteBtn = (Button) findViewById(R.id.delete) ;
 
         audio1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,10 +125,44 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             }
         });
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(ReadingListAdminActivity.this);
+                builder1.setTitle("Are you sure you want to delete all media files?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                databaseReference.child("reading_first_file").setValue("default");
+                                databaseReference.child("reading_second_file").setValue("default");
+                                databaseReference.child("reading_third_file").setValue("default");
+
+                                Toast.makeText(ReadingListAdminActivity.this, "All files has been deleted.", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.setIcon(android.R.drawable.ic_dialog_alert);
+                alert11.show();
+            }
+        });
+
         loadingBar = new ProgressDialog(this);
         nameTV.setEnabled(false);
 //        Toast.makeText(ReadingListAdminActivity.this,""+readingID,Toast.LENGTH_SHORT).show();
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String imgID = dataSnapshot.child("reading_image").getValue(String.class);
@@ -133,13 +173,13 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 String third_file = dataSnapshot.child("reading_third_file").getValue(String.class);
 
                 if(!first_file.equals("default")){
-                    audio1Btn.setBackgroundResource(R.color.bg_screen3);
+                    audio1Btn.setBackgroundResource(R.drawable.uploaded_btn);
                 }
                 if(!second_file.equals("default")){
-                    audio2Btn.setBackgroundColor(Color.blue(25));
+                    audio2Btn.setBackgroundResource(R.drawable.uploaded_btn);
                 }
                 if(!third_file.equals("default")){
-                    videoBtn.setBackgroundResource(R.color.bg_screen3);
+                    videoBtn.setBackgroundResource(R.drawable.uploaded_btn);
                 }
 
                 if(imgID.equals( "default" )){
@@ -183,7 +223,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
 //                listChild.smoothScrollToPosition(3);
                 scrollkey = false;
 
-                Toast.makeText(ReadingListAdminActivity.this,"An... Item Added.",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ReadingListAdminActivity.this,"An Item Added.",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -204,7 +244,8 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(ReadingListAdminActivity.this);
                 final EditText edittext = new EditText(ReadingListAdminActivity.this);
-//                edittext.setInputType( InputType.TYPE_CLASS_TEXT);
+//                edittext.setInputType( InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | HYPHENATION_FREQUENCY_NONE);
+
                 alert.setTitle("Edit Detail...");
 
                 alert.setView(edittext);
@@ -258,7 +299,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                         });
 
                 AlertDialog alert11 = builder1.create();
-                alert11.setIcon(android.R.drawable.ic_dialog_alert);
+                alert11.setIcon(R.drawable.warning);
                 alert11.show();
 
                 return true;

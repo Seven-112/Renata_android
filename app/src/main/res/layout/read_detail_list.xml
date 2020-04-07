@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:layout_margin="8dp"
     android:backgroundTint="@color/design_default_color_primary_dark"
-    android:orientation="vertical" >
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:paddingTop="5dp"
-            android:textSize="20sp" />
+            android:layout_weight="1"
+            style="@style/SimpleBreakStrategy"
+            android:layout_centerInParent="true"
+            android:hyphenationFrequency="none"
+            android:textSize="18sp" />
 <!--        <LinearLayout-->
 <!--            android:layout_below="@+id/detailText"-->
 <!--            android:layout_width="match_parent"-->
