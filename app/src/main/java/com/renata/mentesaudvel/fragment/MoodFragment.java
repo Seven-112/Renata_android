@@ -119,7 +119,7 @@ public class MoodFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
         String userID = currentUser.getUid();
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         final DatabaseReference userTable = mDatabase.child("USER").child(userID).child("feelStatus");
         final DatabaseReference datehis = mDatabase.child("USER").child(userID).child("dateHistory").child(String.valueOf(currentDate));
 
