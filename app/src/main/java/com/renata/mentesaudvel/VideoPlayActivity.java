@@ -1,5 +1,6 @@
 package com.renata.mentesaudvel;
 
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -14,16 +15,14 @@ public class VideoPlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoplay);
-
         Bundle extra = getIntent().getExtras();
         String videoID = extra.getString("videoID");
         audioCheck = extra.getString("audioCheck");
 
         VideoView videoView =(VideoView)findViewById(R.id.vdVw);
         if(audioCheck.equals("1")){
-            videoView.setBackgroundResource(R.drawable.green);
+            videoView.setBackgroundResource(R.drawable.media_bg);
         }
-
         //Set MediaController  to enable play, pause, forward, etc options.
         MediaController mediaController= new MediaController(this);
         mediaController.setAnchorView(videoView);

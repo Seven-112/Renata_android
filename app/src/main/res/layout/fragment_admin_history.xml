@@ -21,11 +21,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/profileimg"
             android:text="Nome   :"
             android:textColor="#ffffff"
             android:id="@+id/nametitle"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/nameTV"
@@ -35,17 +36,19 @@
             android:layout_marginTop="15dp"
             android:textColor="#ffffff"
             android:layout_toRightOf="@id/nametitle"
-            android:text="aaa" />
+            android:text="aaa"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="#ffffff"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/profileimg"
             android:text="Sexo     :"
             android:layout_below="@+id/nametitle"
             android:id="@+id/gendertitle"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/genderTV"
@@ -56,18 +59,20 @@
             android:textColor="#ffffff"
             android:layout_below="@+id/nametitle"
             android:layout_toRightOf="@id/gendertitle"
-            android:text="aaa" />
+            android:text="aaa"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:text="Idade    :"
             android:textColor="#ffffff"
             android:layout_below="@+id/genderTV"
             android:layout_toRightOf="@id/profileimg"
             android:id="@+id/agetitle"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/ageTV"
@@ -78,19 +83,20 @@
             android:textColor="#ffffff"
             android:layout_below="@+id/genderTV"
             android:layout_toRightOf="@id/agetitle"
-            android:text="aaa" />
+            android:text="aaa"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:text="Email    :"
             android:textColor="#ffffff"
             android:layout_below="@+id/ageTV"
             android:layout_toRightOf="@id/profileimg"
             android:id="@+id/emailtitle"
-            />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/emailTV"
             android:layout_width="wrap_content"
@@ -100,7 +106,8 @@
             android:textColor="#ffffff"
             android:layout_below="@+id/ageTV"
             android:layout_toRightOf="@id/agetitle"
-            android:text="aaa" />
+            android:text="aaa"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
