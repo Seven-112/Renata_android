@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,13 +23,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.renata.mentesaudvel.Adapter.ReadDetailAdapter;
@@ -38,6 +43,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,7 +52,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
 
     String[] itemname = {};
     DatabaseReference databaseReference;
-    Button addChildBtn,editTxtBtn;
+    Button addChildBtn,editTxtBtn, audio1Btn,audio2Btn,videoBtn;
     ImageView sectionImage;
     ListView listChild;
     EditText nameTV;
@@ -53,8 +60,11 @@ public class ReadingListAdminActivity extends AppCompatActivity {
     private ReadDetailAdapter readDetailAdapter;
     private static final int GalleryPick = 1;
     private ProgressDialog loadingBar;
-
-    private StorageReference userProfileImageRef;
+    private final int PICK_FILE_REQUEST = 11;
+    private final int PICK_FILE_REQUEST2 = 10;
+    private final int PICK_VIDEO_REQUEST = 12;
+    private StorageReference userProfileImageRef,storageReference;
+    private Uri filePath, filePathdoc,filePathdoc2,videoPathdoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +72,51 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_readinglist);
 
         Bundle extra = getIntent().getExtras();
-        String readingID = extra.getString("readindid");
+        String readingID = extra.getString("readingid");
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Readings").child(readingID);
         userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        storageReference = FirebaseStorage.getInstance().getReference().child("Audios");
 
         addChildBtn = (Button) findViewById(R.id.buttonAddChild);
         editTxtBtn = (Button) findViewById(R.id.editTxtBtn);
         sectionImage = (ImageView) findViewById(R.id.sectionImage);
         listChild = (ListView) findViewById(R.id.listChild);
         nameTV = (EditText) findViewById(R.id.sectiontitle);
+
+        audio1Btn = (Button) findViewById(R.id.firstAudio) ;
+        audio2Btn = (Button) findViewById(R.id.secondAudio) ;
+        videoBtn = (Button) findViewById(R.id.video) ;
+
+        audio1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setType("audio/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Files"), PICK_FILE_REQUEST);
+            }
+        });
+        audio2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setType("audio/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Files"), PICK_FILE_REQUEST2);
+            }
+        });
+
+        videoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setType("video/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Files"), PICK_VIDEO_REQUEST);
+            }
+        });
 
         loadingBar = new ProgressDialog(this);
         nameTV.setEnabled(false);
@@ -82,6 +126,21 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String imgID = dataSnapshot.child("reading_image").getValue(String.class);
                 String name = dataSnapshot.child("reading_name").getValue(String.class);
+
+                String first_file = dataSnapshot.child("reading_first_file").getValue(String.class);
+                String second_file = dataSnapshot.child("reading_second_file").getValue(String.class);
+                String third_file = dataSnapshot.child("reading_third_file").getValue(String.class);
+
+                if(!first_file.equals("default")){
+                    audio1Btn.setBackgroundResource(R.color.bg_screen3);
+                }
+                if(!second_file.equals("default")){
+                    audio2Btn.setBackgroundColor(Color.blue(25));
+                }
+                if(!third_file.equals("default")){
+                    videoBtn.setBackgroundResource(R.color.bg_screen3);
+                }
+
                 if(imgID.equals( "default" )){
                     Picasso.get().load(R.drawable.newitem).into(sectionImage);
                 }
@@ -259,6 +318,9 @@ public class ReadingListAdminActivity extends AppCompatActivity {
 
     }
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -326,6 +388,169 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
+        }
+
+        if(requestCode == PICK_FILE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            filePathdoc = data.getData();
+            Uri returnUri = data.getData();
+            String src = returnUri.getPath();
+            String file = src.substring(src.lastIndexOf("/")+1, src.length());
+            audio1Btn.setText(file);
+        }
+        if(filePathdoc != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(ReadingListAdminActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+//            String substr =attached_fileName.getText().toString().substring(attached_fileName.getText().toString().indexOf("."));
+
+            final StorageReference ref = storageReference.child(audio1Btn.getText().toString().trim());
+
+
+            ref.putFile(filePathdoc)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+//                            Toast.makeText(ReadingListAdminActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            //TODO; download URL getting
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String downURL_file = uri.toString();
+                                    databaseReference.child("reading_first_file").setValue(downURL_file);
+
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(ReadingListAdminActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+
+        if(requestCode == PICK_FILE_REQUEST2 && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            filePathdoc2 = data.getData();
+            Uri returnUri = data.getData();
+            String src = returnUri.getPath();
+            String file = src.substring(src.lastIndexOf("/")+1, src.length());
+            audio2Btn.setText(file);
+        }
+        if(filePathdoc2 != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(ReadingListAdminActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+//            String substr =attached_fileName.getText().toString().substring(attached_fileName.getText().toString().indexOf("."));
+
+            final StorageReference ref = storageReference.child(audio2Btn.getText().toString().trim());
+
+
+            ref.putFile(filePathdoc2)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+//                            Toast.makeText(ReadingListAdminActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            //TODO; download URL getting
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String downURL_file = uri.toString();
+                                    databaseReference.child("reading_second_file").setValue(downURL_file);
+
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(ReadingListAdminActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+
+        if(requestCode == PICK_VIDEO_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            videoPathdoc = data.getData();
+            Uri returnUri = data.getData();
+            String src = returnUri.getPath();
+            String file = src.substring(src.lastIndexOf("/")+1, src.length());
+            videoBtn.setText(file);
+        }
+
+        if(videoPathdoc != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(ReadingListAdminActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+//            String substr =attached_fileName.getText().toString().substring(attached_fileName.getText().toString().indexOf("."));
+
+            final StorageReference ref = storageReference.child(videoBtn.getText().toString().trim());
+
+
+            ref.putFile(videoPathdoc)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+//                            Toast.makeText(ReadingListAdminActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            //TODO; download URL getting
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String downURL_file = uri.toString();
+                                    databaseReference.child("reading_third_file").setValue(downURL_file);
+
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(ReadingListAdminActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
         }
     }
 }

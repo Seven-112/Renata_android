@@ -145,7 +145,7 @@ public class AdminReadingFragment extends Fragment {
                 Reading Item = readings.get(position);
                 String readingID= Item.getreading_id();
                 Intent intent = new Intent(getActivity(), ReadingListAdminActivity.class);
-                intent.putExtra("readindid",readingID);
+                intent.putExtra("readingid",readingID);
                 startActivity(intent);
             }
         });

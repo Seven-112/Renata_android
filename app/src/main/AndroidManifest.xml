@@ -53,6 +53,7 @@
 
         <activity android:name=".ReadingListAdminActivity"/>
         <activity android:name=".ReadingListUserActivity"/>
+        <activity android:name=".VideoPlayActivity" android:screenOrientation="fullSensor"/>
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

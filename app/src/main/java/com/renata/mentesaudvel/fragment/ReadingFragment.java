@@ -95,7 +95,7 @@ public class ReadingFragment extends Fragment {
                 Reading Item = readings.get(position);
                 String readingID= Item.getreading_id();
                 Intent intent = new Intent(getActivity(), ReadingListUserActivity.class);
-                intent.putExtra("readindid",readingID);
+                intent.putExtra("readingid",readingID);
                 startActivity(intent);
 
             }
