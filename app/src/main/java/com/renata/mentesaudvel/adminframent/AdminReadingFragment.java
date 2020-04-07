@@ -217,7 +217,7 @@ public class AdminReadingFragment extends Fragment {
 
                 readings.add( Item );
             }
-            if(scrollKeyParent.equals(false)){
+            if(!scrollKeyParent){
 
                 list.post(new Runnable(){
                     public void run() {
