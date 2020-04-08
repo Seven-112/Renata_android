@@ -141,14 +141,20 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title1);
+                                    datehis.setValue(title1);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title1, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title1);
                                     datehis.setValue(title1);
                                     Toast.makeText(getActivity(), "Hoje o humor era "+ title1, Toast.LENGTH_SHORT).show();
-
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title1);
+                            datehis.setValue(title1);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title1, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -174,14 +180,20 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title2);
+                                    datehis.setValue(title2);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title2, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title2);
                                     datehis.setValue(title2);
                                     Toast.makeText(getActivity(), "Hoje o humor era "+ title2, Toast.LENGTH_SHORT).show();
-
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title2);
+                            datehis.setValue(title2);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title2, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -206,6 +218,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title3);
+                                    datehis.setValue(title3);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title3, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title3);
                                     datehis.setValue(title3);
@@ -214,6 +229,11 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title3);
+                            datehis.setValue(title3);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title3, Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
@@ -239,6 +259,10 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title4);
+                                    datehis.setValue(title4);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title4, Toast.LENGTH_SHORT).show();
+
                                 }else {
                                     userTable.setValue(title4);
                                     datehis.setValue(title4);
@@ -247,6 +271,11 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title4);
+                            datehis.setValue(title4);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title4, Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
@@ -272,6 +301,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title5);
+                                    datehis.setValue(title5);
+                                    Toast.makeText(getActivity(), "Hoje o humor era " + title5, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title5);
                                     datehis.setValue(title5);
@@ -280,6 +312,10 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title5);
+                            datehis.setValue(title5);
+                            Toast.makeText(getActivity(), "Hoje o humor era " + title5, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -305,6 +341,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title6);
+                                    datehis.setValue(title6);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title6, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title6);
                                     datehis.setValue(title6);
@@ -312,6 +351,10 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title6);
+                            datehis.setValue(title6);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title6, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -337,6 +380,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title7);
+                                    datehis.setValue(title7);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title7, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title7);
                                     datehis.setValue(title7);
@@ -344,6 +390,10 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title7);
+                            datehis.setValue(title7);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title7, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -369,6 +419,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title8);
+                                    datehis.setValue(title8);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title8, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title8);
                                     datehis.setValue(title8);
@@ -376,6 +429,10 @@ public class MoodFragment extends Fragment {
                                 }
 
                             }
+                        }else {
+                            userTable.setValue(title8);
+                            datehis.setValue(title8);
+                            Toast.makeText(getActivity(), "Hoje o humor era "+ title8, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -401,6 +458,9 @@ public class MoodFragment extends Fragment {
                                 String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                                 if(time.equals(currentDate)){
                                     datehisCheck.child(key).removeValue();
+                                    userTable.setValue(title9);
+                                    datehis.setValue(title9);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title9, Toast.LENGTH_SHORT).show();
                                 }else {
                                     userTable.setValue(title9);
                                     datehis.setValue(title9);
@@ -409,6 +469,9 @@ public class MoodFragment extends Fragment {
 
                             }
                         }
+                        userTable.setValue(title9);
+                        datehis.setValue(title9);
+                        Toast.makeText(getActivity(), "Hoje o humor era "+ title9, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -416,11 +479,8 @@ public class MoodFragment extends Fragment {
 
                     }
                 });
-
             }
         });
-
-
         
         return root;
     }
