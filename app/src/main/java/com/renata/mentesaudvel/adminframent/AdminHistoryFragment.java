@@ -1,6 +1,7 @@
 package com.renata.mentesaudvel.adminframent;
 
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,12 @@ public class AdminHistoryFragment extends Fragment {
             R.drawable.sacred_emoji,
             R.drawable.agitated_emoji
     };
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM/yyyy", cal).toString();
+        return date;
+    }
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -136,8 +143,10 @@ public class AdminHistoryFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             String key = (String) dataSnapshot1.getKey();
+                            long key1 = Long.parseLong(key);
+                            String time = getDate(key1);
                             String value = (String) dataSnapshot1.getValue();
-                            date.add(key);
+                            date.add(time);
                             status.add(value);
                         }
                         int i = date.size();
