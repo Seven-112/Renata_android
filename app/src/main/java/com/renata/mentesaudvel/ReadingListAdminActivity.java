@@ -475,6 +475,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String downURL_file = uri.toString();
                                     databaseReference.child("reading_first_file").setValue(downURL_file);
+                                    audio1Btn.setBackgroundResource(R.drawable.uploaded_btn);
 
                                 }
                             });
@@ -529,7 +530,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String downURL_file = uri.toString();
                                     databaseReference.child("reading_second_file").setValue(downURL_file);
-
+                                    audio2Btn.setBackgroundResource(R.drawable.uploaded_btn);
                                 }
                             });
                         }
@@ -584,7 +585,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String downURL_file = uri.toString();
                                     databaseReference.child("reading_third_file").setValue(downURL_file);
-
+                                    videoBtn.setBackgroundResource(R.drawable.uploaded_btn);
                                 }
                             });
                         }
