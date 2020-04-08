@@ -28,8 +28,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 //        if (!alreadyDisplayedNotification){
             Notification.Builder builder = new Notification.Builder(context);
             builder.setSmallIcon(android.R.drawable.ic_dialog_info)
-                    .setContentTitle("It's Time!")
-                    .setContentText("message")
+                    .setContentTitle("Mente Saudável")
+                    .setContentText("Por favor, escolha o seu humor hoje.")
                     .setWhen(System.currentTimeMillis())
                     .setAutoCancel(true)
                     .setContentIntent(contentIntent)
