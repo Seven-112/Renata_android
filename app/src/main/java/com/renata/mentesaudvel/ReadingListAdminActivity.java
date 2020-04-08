@@ -129,11 +129,11 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(ReadingListAdminActivity.this);
-                builder1.setTitle("Are you sure you want to delete all media files?");
+                builder1.setTitle("Deseja formatar todos os arquivos de mídia?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "sim",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 databaseReference.child("reading_first_file").setValue("default");
@@ -146,7 +146,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                         });
 
                 builder1.setNegativeButton(
-                        "No",
+                        "não",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -204,10 +204,10 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 if(nameTV.isEnabled()){
                     nameTV.setEnabled(false);
                     databaseReference.child("reading_name").setValue(nameTV.getText().toString());
-                    editTxtBtn.setText("Edit Title");
+                    editTxtBtn.setText("Editar título");
                 }else{
                     nameTV.setEnabled(true);
-                    editTxtBtn.setText("Update");
+                    editTxtBtn.setText("Atualizar");
                 }
             }
         });
@@ -244,14 +244,14 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                 final EditText edittext = new EditText(ReadingListAdminActivity.this);
 //                edittext.setInputType( InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | HYPHENATION_FREQUENCY_NONE);
 
-                alert.setTitle("Edit Detail...");
+                alert.setTitle("Edite o conteúdo.");
 
                 alert.setView(edittext);
                 ReadItem Item = readitems.get(position);
                 String detail= Item.getreaditem_detail();
                 edittext.setText(detail);
 
-                alert.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Atualizar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String updateText = edittext.getText().toString();
                         ReadItem Item = readitems.get(position);
@@ -261,7 +261,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         dialog.cancel();
@@ -275,11 +275,11 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(ReadingListAdminActivity.this);
-                builder1.setTitle("Are you sure you want to delete this Item?");
+                builder1.setTitle("Deseja excluir este conteúdo?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "sim",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 ReadItem Item = readitems.get(position);
@@ -289,7 +289,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
                         });
 
                 builder1.setNegativeButton(
-                        "No",
+                        "não",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -355,7 +355,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         DatabaseReference DeleteReference = databaseReference.child("items").child(id);
         //removing Item
         DeleteReference.removeValue();
-        Toast.makeText(ReadingListAdminActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+        Toast.makeText(ReadingListAdminActivity.this, "Excluído!", Toast.LENGTH_LONG).show();
         return true;
 
     }
@@ -366,7 +366,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
         ReadItem Item = new ReadItem( id, "default", detail);
         //update  Item  to firebase
         UpdateReference.setValue( Item );
-        Toast.makeText(ReadingListAdminActivity.this, "Item Updated", Toast.LENGTH_LONG).show();
+        Toast.makeText(ReadingListAdminActivity.this, "Atualizado!", Toast.LENGTH_LONG).show();
         return true;
 
     }
@@ -450,7 +450,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            audio1Btn.setText(file);
+//            audio1Btn.setText(file);
         }
         if(filePathdoc != null)
         {
@@ -504,7 +504,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            audio2Btn.setText(file);
+//            audio2Btn.setText(file);
         }
         if(filePathdoc2 != null)
         {
@@ -558,7 +558,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            videoBtn.setText(file);
+//            videoBtn.setText(file);
         }
 
         if(videoPathdoc != null)

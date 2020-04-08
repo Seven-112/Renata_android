@@ -42,7 +42,7 @@
             android:id="@+id/editTxtBtn"
             android:layout_gravity="bottom"
             android:layout_marginLeft="6dp"
-            android:text="Edit Title"
+            android:text="Editar título"
             android:background="@drawable/small_btn"
             />
 

@@ -162,11 +162,11 @@ public class AdminReadingFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-                builder1.setTitle("Are you sure you want to delete this Item?");
+                builder1.setTitle("Deseja excluir este conteúdo?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "sim",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Reading Item = readings.get(position);
@@ -176,7 +176,7 @@ public class AdminReadingFragment extends Fragment {
                         });
 
                 builder1.setNegativeButton(
-                        "No",
+                        "não",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -243,7 +243,7 @@ public class AdminReadingFragment extends Fragment {
         DatabaseReference DeleteReference = FirebaseDatabase.getInstance().getReference("Readings").child(id);
         //removing Item
         DeleteReference.removeValue();
-        Toast.makeText(getContext(), "Item Deleted", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Excluído!", Toast.LENGTH_LONG).show();
         return true;
 
     }

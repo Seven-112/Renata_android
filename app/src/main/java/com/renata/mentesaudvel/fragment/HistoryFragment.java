@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,13 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HistoryFragment extends Fragment {
+
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM/yyyy", cal).toString();
+        return date;
+    };
 
     private FirebaseAuth auth;//TODO; firebase
     private DatabaseReference mDatabase; //TODO; database reference
@@ -118,6 +126,7 @@ public class HistoryFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             String key = (String) dataSnapshot1.getKey();
+<<<<<<< HEAD
                             String value = (String) dataSnapshot1.getValue();
                             date.add(key);
                             status.add(value);
@@ -130,6 +139,22 @@ public class HistoryFragment extends Fragment {
                         if (j > 30) {
                             status.subList(0, j-30).clear();
                         }
+=======
+                            long key1 = Long.parseLong(key);
+                            String time = getDate(key1);
+                            String value = (String) dataSnapshot1.getValue();
+                            date.add(time);
+                            status.add(value);
+                        }
+                        int i = date.size();
+                        int j = status.size();
+                        if (i > 30) {
+                            date.subList(0,i-30).clear();
+                        }
+                        if (j > 30) {
+                            status.subList(0, j-30).clear();
+                        }
+>>>>>>> 65eeeb8fe232116fd0559facf6f83e9c4640c96c
                         Collections.reverse(date);
                         Collections.reverse(status);
                         SecondFeelListAdapter adapter=new SecondFeelListAdapter(HistoryFragment.newInstance("",""), date, status, imgid);
