@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,13 @@ public class SplashActivity extends AppCompatActivity {
     private static final String KEY_CREDENTIALS = "LOGIN_CREDENTIALS";
     private StringBuilder dates = new StringBuilder();
     private String userID;
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM/yyyy", cal).toString();
+        return date;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,15 +109,17 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void gotoNotification() {
-        final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        final String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
         datehis.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        final String key = (String) dataSnapshot1.getKey();
-                        dates.append(key);
+                        String key = (String) dataSnapshot1.getKey();
+                        long key1 = Long.parseLong(key);
+                        String time = getDate(key1);
+                        dates.append(time);
 
                     }
                     if (!dates.toString().contains(currentDate)) {

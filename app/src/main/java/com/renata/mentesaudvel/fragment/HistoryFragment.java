@@ -42,7 +42,7 @@ public class HistoryFragment extends Fragment {
         cal.setTimeInMillis(time);
         String date = DateFormat.format("dd/MM/yyyy", cal).toString();
         return date;
-    };
+    }
 
     private FirebaseAuth auth;//TODO; firebase
     private DatabaseReference mDatabase; //TODO; database reference
