@@ -1,37 +1,31 @@
 package com.renata.mentesaudvel.fragment;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.renata.mentesaudvel.AlarmReceiver;
-import com.renata.mentesaudvel.Model.User;
-import com.renata.mentesaudvel.MoodActivity;
+import com.google.firebase.database.ValueEventListener;
 import com.renata.mentesaudvel.R;
-import com.renata.mentesaudvel.SubmitActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.logging.Handler;
-
-import static android.content.Context.ALARM_SERVICE;
 
 public class MoodFragment extends Fragment {
 
@@ -49,10 +43,15 @@ public class MoodFragment extends Fragment {
             eight_title,
             nineth_title,
             name;
-    String user_name = "";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM/yyyy", cal).toString();
+        return date;
+    }
+    DatabaseReference datehisCheck;
     private String mParam1;
     private String mParam2;
 
@@ -119,80 +118,305 @@ public class MoodFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
         String userID = currentUser.getUid();
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        Calendar startTime = Calendar.getInstance();
+
+        long timestamp = startTime.getTimeInMillis();
+
+
         final DatabaseReference userTable = mDatabase.child("USER").child(userID).child("feelStatus");
-        final DatabaseReference datehis = mDatabase.child("USER").child(userID).child("dateHistory").child(String.valueOf(currentDate));
+        final DatabaseReference datehis = mDatabase.child("USER").child(userID).child("dateHistory").child(String.valueOf(timestamp));
+        datehisCheck = mDatabase.child("USER").child(userID).child("dateHistory");
 
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title1);
-                datehis.setValue(title1);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title1, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title1);
+                                    datehis.setValue(title1);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title1, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title2);
-                datehis.setValue(title2);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title2, Toast.LENGTH_SHORT).show();
-            }
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title2);
+                                    datehis.setValue(title2);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title2, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                            }
         });
         third.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title3);
-                datehis.setValue(title3);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title3, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title3);
+                                    datehis.setValue(title3);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title3, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         fourth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title4);
-                datehis.setValue(title4);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title4, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title4);
+                                    datehis.setValue(title4);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title4, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         fifth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title5);
-                datehis.setValue(title5);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title5, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title5);
+                                    datehis.setValue(title5);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title5, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         sixth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title6);
-                datehis.setValue(title6);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title6, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title6);
+                                    datehis.setValue(title6);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title6, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         seventh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title7);
-                datehis.setValue(title7);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title7, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title7);
+                                    datehis.setValue(title7);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title7, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title8);
-                datehis.setValue(title8);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title8, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title8);
+                                    datehis.setValue(title8);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title8, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
         nineth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTable.setValue(title9);
-                datehis.setValue(title9);
-                Toast.makeText(getActivity(), "Hoje o humor era "+ title9, Toast.LENGTH_SHORT).show();
+                datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                String key = (String) dataSnapshot1.getKey();
+                                long key1 = Long.parseLong(key);
+                                String time = getDate(key1);
+                                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                                if(time.equals(currentDate)){
+                                    datehisCheck.child(key).removeValue();
+                                }else {
+                                    userTable.setValue(title9);
+                                    datehis.setValue(title9);
+                                    Toast.makeText(getActivity(), "Hoje o humor era "+ title9, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
 
@@ -200,6 +424,34 @@ public class MoodFragment extends Fragment {
         
         return root;
     }
+//    public void checkDate(){
+//        datehisCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+//                        String key = (String) dataSnapshot1.getKey();
+//                        long key1 = Long.parseLong(key);
+//                        String time = getDate(key1);
+//                        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+//                        if(time.equals(currentDate)){
+//                            datehisCheck.child(key).removeValue();
+//                        }else {
+//                            Toast.makeText(getActivity(), "xxxxxx", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+
     @Override
     public void onStart() {
         super.onStart();

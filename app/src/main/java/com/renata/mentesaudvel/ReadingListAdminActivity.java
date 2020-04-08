@@ -450,7 +450,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            audio1Btn.setText(file);
+//            audio1Btn.setText(file);
         }
         if(filePathdoc != null)
         {
@@ -504,7 +504,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            audio2Btn.setText(file);
+//            audio2Btn.setText(file);
         }
         if(filePathdoc2 != null)
         {
@@ -558,7 +558,7 @@ public class ReadingListAdminActivity extends AppCompatActivity {
             Uri returnUri = data.getData();
             String src = returnUri.getPath();
             String file = src.substring(src.lastIndexOf("/")+1, src.length());
-            videoBtn.setText(file);
+//            videoBtn.setText(file);
         }
 
         if(videoPathdoc != null)
